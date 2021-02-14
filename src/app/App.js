@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import Search from './components/Search/Search.jsx';
 import Table from './components/Table/Table.jsx';
 
+import './App.css';
+
 const columns = [
   {
     name: 'Name',
@@ -21,6 +23,7 @@ const columns = [
     accessor: 'phone',
   },
 ];
+
 
 const App = () => {
   const [data, setData] = useState({ initialData: [], filteredData: [] });
@@ -47,10 +50,13 @@ const App = () => {
   
   return (
     <main>
+      <header>
+        <h1>User List</h1>
+      </header>
       <Search onSearch={handleSearch} />
       <Table
         columns={columns}
-        data={data.filteredData}
+        data={data}
         isFetching={isFetching}
         hasSearch
       />
