@@ -55,11 +55,22 @@ const Table = ({
             return (
               <tr key={item.id}>
                 {
-                  columns.map(col => (
-                    <td key={item.id + col.accessor}>
-                      {item[col.accessor]}
-                    </td>
-                  ))
+                  columns.map(col => {
+                    if (['email', 'phone'].includes(col.accessor)) {
+                      return (
+                        <td key={item.id + col.accessor}>
+                          <a href={`${col.accessor === 'phone' ? 'tel:+' : 'mailto:+'}${item[col.accessor]}`}>{item[col.accessor]}</a>
+                        </td>
+                      );
+                    }
+                    else {
+                      return (
+                        <td key={item.id + col.accessor}>
+                          {item[col.accessor]}
+                        </td>
+                      )
+                    }
+                  })
                 }
               </tr>
             )
