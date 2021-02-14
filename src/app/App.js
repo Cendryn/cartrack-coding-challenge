@@ -32,10 +32,20 @@ const App = () => {
   useEffect(() => {
     setIsFetching(true);
     fetch('https://jsonplaceholder.typicode.com/users')
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        else {
+          return [];
+        }
+      })
+      .then((data) => {
         setData({ initialData: data, filteredData: data });
+        setIsFetching(false);
+      })
+      .catch(error => {
+        console.log(error);
         setIsFetching(false);
       });
   }, []);
