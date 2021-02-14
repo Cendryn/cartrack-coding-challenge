@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import './Search.css';
+
 const Search = ({ onSearch }) => {
   const [searchText, setSearchText] = useState('');
 
@@ -16,7 +18,7 @@ const Search = ({ onSearch }) => {
   }
 
   return (
-    <div>
+    <div id="search-bar">
       <input
         type="text"
         value={searchText}
